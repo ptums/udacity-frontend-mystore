@@ -4,8 +4,8 @@
   </a>
   <p>{{ product.name }}</p>
   <p>{{ product.price }}</p>
-  <!-- <select
-    [(ngModel)]="selectedQuantity"
+  <select
+    [(ngModel)]="quantity"
     name="quantity"
     id="quantity"
     class="select-input"
@@ -15,11 +15,6 @@
     <option value="3">3</option>
     <option value="4">4</option>
     <option value="5">5</option>
-  </select> -->
-  <!-- <button
-    class="btn btn-primary"
-    (click)="addToCart(product, selectedQuantity)"
-  >
-    Add to cart!
-  </button> -->
+  </select>
+  <button class="btn btn-primary" (click)="addToCart()">Add to cart!</button>
 </div>

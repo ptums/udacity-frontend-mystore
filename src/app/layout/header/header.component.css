@@ -1,15 +1,16 @@
 .header {
-  text-align: center;
   background: #33b5e5;
-  color: #fff;
-  padding: 12px;
+  @apply text-center text-white p-3;
+}
+
+h1 {
+  @apply text-4xl mb-2;
 }
 
 a {
-  color: #ffffff;
+  @apply text-white text-base mr-2;
 }
 
-ul {
-  margin: 0;
-  padding: 0;
+a:hover {
+  @apply underline;
 }
