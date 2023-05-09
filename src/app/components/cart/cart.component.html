@@ -1,1 +1,67 @@
-<p>cart works!</p>
+<div class="empty-cart-message" *ngIf="cart.items.length == 0">
+  There are currently no items in the cart.
+</div>
+<div class="pageContainer">
+  <div *ngIf="cart.items.length > 0" class="cart-container">
+    <div class="cart-panel" *ngFor="let item of cart.items">
+      <div class="cart-item">
+        <img src="{{ item.product.url }}" alt="" />
+        <div class="cart-item-details">
+          <h5>{{ item.product.name }}</h5>
+          <p>$ {{ item.product.price }}</p>
+          <label for="amount">Amount: </label>
+          <input
+            type="number"
+            [(ngModel)]="item.quantity"
+            class="number-input"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- <div class="totalContainer">
+      <p>
+        <b>Total: $ {{ cartValue.toString() }}</b>
+      </p>
+    </div> -->
+  </div>
+  <!-- <form #form="ngForm" *ngIf="cart.length > 0" (ngSubmit)="onSubmit()">
+    <label for="fullName"><b>Full name</b></label>
+    <input
+      type="text"
+      class="form-control"
+      id="fullName"
+      required
+      [(ngModel)]="orderDetails.fullName"
+      name="fullName"
+      minlength="3"
+      placeholder="minimum 3 characters"
+    />
+    <label for="address"><b>Address</b></label>
+    <input
+      type="text"
+      class="form-control"
+      id="address"
+      required
+      [(ngModel)]="orderDetails.address"
+      name="address"
+      minlength="6"
+      placeholder="minimum 6 characters"
+    />
+    <label for="fullName"><b>Credit card number</b></label>
+    <input
+      type="text"
+      class="form-control"
+      id="ccNumber"
+      placeholder="(16 digit number)"
+      [(ngModel)]="orderDetails.ccNumber"
+      required
+      name="ccNumber"
+      pattern="[0-9]{16}"
+      title="Please enter a 16 digit number"
+    />
+    <br />
+    <button type="submit" class="btn btn-primary" [disabled]="!form.form.valid">
+      Submit
+    </button>
+  </form> -->
+</div>
