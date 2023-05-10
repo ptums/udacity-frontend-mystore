@@ -1,67 +1,80 @@
-<div class="empty-cart-message" *ngIf="cart.items.length == 0">
-  There are currently no items in the cart.
+<div class="flex justify-center mt-24" *ngIf="cart.items.length == 0">
+  <p class="text-4xl font-bold">There are currently no items in the cart.</p>
 </div>
-<div class="pageContainer">
-  <div *ngIf="cart.items.length > 0" class="cart-container">
-    <div class="cart-panel" *ngFor="let item of cart.items">
-      <div class="cart-item">
-        <img src="{{ item.product.url }}" alt="" />
-        <div class="cart-item-details">
-          <h5>{{ item.product.name }}</h5>
-          <p>$ {{ item.product.price }}</p>
-          <label for="amount">Amount: </label>
-          <input
-            type="number"
-            [(ngModel)]="item.quantity"
-            class="number-input"
-          />
+<div
+  *ngIf="cart.items.length > 0"
+  class="flex flex-wrap justify-between mx-auto mt-8 max-w-screen-lg"
+>
+  <div class="my-12">
+    <ul class="w-1/2 mb-12" *ngFor="let item of cart.items">
+      <li class="flex justify-between items-center">
+        <img
+          src="{{ item.product.url }}"
+          alt="{{ item.product.name }}"
+          style="width: 290px"
+        />
+        <div class="ml-12">
+          <p class="text-xl font-bold">{{ item.product.name }}</p>
+          <p class="text-base text-gray-700">$ {{ item.product.price }}</p>
+          <span class="flex h-12 items-center">
+            <label for="amount">Amount: </label>
+            <input
+              type="number"
+              [(ngModel)]="item.quantity"
+              class="m-3 border-yellow-600 border rounded h-8 w-10 p-1"
+              (click)="increaseQuantity($event, item)"
+            />
+          </span>
         </div>
-      </div>
-    </div>
-    <!-- <div class="totalContainer">
-      <p>
-        <b>Total: $ {{ cartValue.toString() }}</b>
-      </p>
-    </div> -->
+      </li>
+    </ul>
+    <p class="text-4xl font-bold">Total: $ {{ total.toString() }}</p>
   </div>
-  <!-- <form #form="ngForm" *ngIf="cart.length > 0" (ngSubmit)="onSubmit()">
-    <label for="fullName"><b>Full name</b></label>
-    <input
-      type="text"
-      class="form-control"
-      id="fullName"
-      required
-      [(ngModel)]="orderDetails.fullName"
-      name="fullName"
-      minlength="3"
-      placeholder="minimum 3 characters"
-    />
-    <label for="address"><b>Address</b></label>
-    <input
-      type="text"
-      class="form-control"
-      id="address"
-      required
-      [(ngModel)]="orderDetails.address"
-      name="address"
-      minlength="6"
-      placeholder="minimum 6 characters"
-    />
-    <label for="fullName"><b>Credit card number</b></label>
-    <input
-      type="text"
-      class="form-control"
-      id="ccNumber"
-      placeholder="(16 digit number)"
-      [(ngModel)]="orderDetails.ccNumber"
-      required
-      name="ccNumber"
-      pattern="[0-9]{16}"
-      title="Please enter a 16 digit number"
-    />
-    <br />
-    <button type="submit" class="btn btn-primary" [disabled]="!form.form.valid">
-      Submit
-    </button>
-  </form> -->
+  <div>
+    <!-- <form #form="ngForm" *ngIf="cart.length > 0" (ngSubmit)="onSubmit()">
+      <label for="fullName"><b>Full name</b></label>
+      <input
+        type="text"
+        class="form-control"
+        id="fullName"
+        required
+        [(ngModel)]="orderDetails.fullName"
+        name="fullName"
+        minlength="3"
+        placeholder="minimum 3 characters"
+      />
+      <label for="address"><b>Address</b></label>
+      <input
+        type="text"
+        class="form-control"
+        id="address"
+        required
+        [(ngModel)]="orderDetails.address"
+        name="address"
+        minlength="6"
+        placeholder="minimum 6 characters"
+      />
+      <label for="fullName"><b>Credit card number</b></label>
+      <input
+        type="text"
+        class="form-control"
+        id="ccNumber"
+        placeholder="(16 digit number)"
+        [(ngModel)]="orderDetails.ccNumber"
+        required
+        name="ccNumber"
+        pattern="[0-9]{16}"
+        title="Please enter a 16 digit number"
+      />
+      <br />
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!form.form.valid"
+      >
+        Submit
+      </button>
+    </form> -->
+    Form will go here...
+  </div>
 </div>
