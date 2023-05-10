@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Cart, CartItem } from '../types/cart.interface';
-import { Product } from '../types/product.interface';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,19 +12,30 @@ export class CartService {
   constructor() {}
 
   addToCart(item: CartItem): void {
-    this.cart.items.push(item);
+    if (this.itemIsInCart(item.product.id)) {
+      this.removeFromCart(item);
+      this.cart.items.push(item);
+    } else {
+      this.cart.items.push(item);
+    }
   }
 
+  itemIsInCart(itemId: number): boolean {
+    return !!this.cart.items.filter((i: CartItem) => {
+      return i.product.id == itemId;
+    }).length;
+  }
+
+  findItemById(itemId: number): CartItem {
+    return this.cart.items.filter((i: CartItem) => {
+      return i.product.id == itemId;
+    })[0];
+  }
   removeFromCart(item: CartItem): void {
-    this.cart.items.filter(
-      (cartItem) => cartItem.product.id !== item.product.id
+    const itemList = this.cart.items.filter(
+      (i) => i.product.id !== item.product.id
     );
-  }
-
-  itemInCart(item: CartItem): void {
-    this.cart.items.filter(
-      (cartItem) => cartItem.product.id === item.product.id
-    );
+    this.cart.items = itemList;
   }
 
   getCartItems(): CartItem[] {

@@ -12,4 +12,24 @@
       <p class="text-base text-slate-500">{{ item.product.description }}</p>
     </div>
   </div>
+  <div class="flex flex-row justify-between items-center">
+    <select
+      [(ngModel)]="item.quantity"
+      name="quantity"
+      id="quantity"
+      class="m-3 border-yellow-600 border rounded h-8 w-10"
+    >
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+    <button
+      class="text-white rounded bg-yellow-500 hover:bg-yellow-300 h-8 w-24"
+      (click)="addToCart()"
+    >
+      Add to cart!
+    </button>
+  </div>
 </div>

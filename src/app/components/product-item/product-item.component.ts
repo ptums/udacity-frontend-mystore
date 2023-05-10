@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Product } from 'src/app/types/product.interface';
 import { CartService } from 'src/app/services/cart.service';
 import { CartItem } from 'src/app/types/cart.interface';
+import { ProductListService } from 'src/app/services/product-list.service';
 
 @Component({
   selector: 'app-product-item',
@@ -9,36 +10,51 @@ import { CartItem } from 'src/app/types/cart.interface';
   styleUrls: ['./product-item.component.css'],
 })
 export class ProductItemComponent {
-  @Input() product: Product;
+  @Input() item: CartItem;
   quantity: number = 1;
 
-  constructor(private cartService: CartService) {
-    this.product = {
-      id: 0,
-      name: '',
-      price: 0,
-      url: '',
-      description: '',
+  constructor(
+    private cartService: CartService,
+    private productListService: ProductListService
+  ) {
+    this.item = {
+      product: {
+        id: 0,
+        name: '',
+        price: 0,
+        url: '',
+        description: '',
+      },
+      quantity: 1,
     };
   }
 
   ngOnInit() {
-    const item = this.cartService
-      .getCartItems()
-      .filter((item) => item.product.id === this.product.id);
-
-    if (item.length > 0) {
-      this.quantity = item[0].product.id;
+    if (this.cartService.itemIsInCart(this.item.product.id)) {
+      this.item = this.cartService.findItemById(this.item.product.id);
+    } else {
+      this.setItemById(this.item.product.id);
     }
   }
 
   addToCart(): void {
-    const product = this.product;
-    const quantity = this.quantity;
+    this.cartService.addToCart(this.item);
+  }
 
-    this.cartService.addToCart({
-      product,
-      quantity,
+  setItemById(productId: number): void {
+    this.productListService.getProducts().subscribe((products) => {
+      const findProduct = products.filter(
+        (product) => product.id === productId
+      );
+
+      if (findProduct.length > 0) {
+        const item = {
+          product: findProduct[0],
+          quantity: 1,
+        };
+
+        this.item = item;
+      }
     });
   }
 }

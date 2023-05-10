@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductListService } from 'src/app/services/product-list.service';
+import { CartItem } from 'src/app/types/cart.interface';
 import { Product } from 'src/app/types/product.interface';
 
 @Component({
@@ -8,12 +9,15 @@ import { Product } from 'src/app/types/product.interface';
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent {
-  productList: Product[] = [];
+  productList: CartItem[] = [];
   constructor(private productListService: ProductListService) {}
 
   ngOnInit() {
     this.productListService.getProducts().subscribe((products) => {
-      this.productList = products;
+      this.productList = products.map((product) => ({
+        product,
+        quantity: 1,
+      }));
     });
   }
 }

@@ -1,12 +1,12 @@
 <div class="product-container">
-  <a [routerLink]="['/product/', product.id]">
-    <img src="{{ product.url }}" class="product-image" />
+  <a [routerLink]="['/product/', item.product.id]">
+    <img src="{{ item.product.url }}" class="product-image" />
   </a>
-  <p>{{ product.name }}</p>
-  <p>{{ product.price }}</p>
+  <p>{{ item.product.name }}</p>
+  <p>{{ item.product.price }}</p>
   <div class="flex flex-row justify-between items-center">
     <select
-      [(ngModel)]="quantity"
+      [(ngModel)]="item.quantity"
       name="quantity"
       id="quantity"
       class="m-3 border-yellow-600 border rounded h-8 w-10"

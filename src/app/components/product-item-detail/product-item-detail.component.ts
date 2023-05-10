@@ -31,28 +31,33 @@ export class ProductItemDetailComponent {
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      const productId = params['id'];
-      const findItemInCard = this.cartService
-        .getCartItems()
-        .filter((item) => item.product.id === productId);
+      const productId = parseInt(params['id']);
 
-      if (findItemInCard.length > 0) {
-        this.item = findItemInCard[0];
+      if (this.cartService.itemIsInCart(productId)) {
+        this.item = this.cartService.findItemById(productId);
       } else {
-        this.productListService.getProducts().subscribe((products) => {
-          const findProduct = products.filter(
-            (product) => product.id === parseInt(productId)
-          );
+        this.setProductById(productId);
+      }
+    });
+  }
 
-          if (findProduct.length > 0) {
-            const item = {
-              product: findProduct[0],
-              quantity: 1,
-            };
+  addToCart(): void {
+    this.cartService.addToCart(this.item);
+  }
 
-            this.item = item;
-          }
-        });
+  setProductById(productId: number): void {
+    this.productListService.getProducts().subscribe((products) => {
+      const findProduct = products.filter(
+        (product) => product.id === productId
+      );
+
+      if (findProduct.length > 0) {
+        const item = {
+          product: findProduct[0],
+          quantity: 1,
+        };
+
+        this.item = item;
       }
     });
   }
