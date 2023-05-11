@@ -42,6 +42,7 @@ export class ProductItemDetailComponent {
   }
 
   addToCart(): void {
+    alert(`${this.item.product.name} has been added to your cart!`);
     this.cartService.addToCart(this.item);
   }
 

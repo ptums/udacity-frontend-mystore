@@ -49,6 +49,12 @@ export class CartService {
       results = results += item.product.price * item.quantity;
     });
 
+    if (results <= 0) {
+      results = 0;
+
+      return results.toFixed(2);
+    }
+
     return results.toFixed(2);
   }
 }

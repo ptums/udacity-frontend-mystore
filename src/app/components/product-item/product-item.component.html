@@ -1,6 +1,10 @@
-<div class="product-container">
+<div class="flex flex-wrap flex-col items-center justify-start mt-32">
   <a [routerLink]="['/product/', item.product.id]">
-    <img src="{{ item.product.url }}" class="product-image" />
+    <img
+      src="{{ item.product.url }}"
+      alt="{{ item.product.name }}"
+      class="w-full sm:w-80"
+    />
   </a>
   <p>{{ item.product.name }}</p>
   <p>{{ item.product.price }}</p>
