@@ -41,4 +41,14 @@ export class CartService {
   getCartItems(): CartItem[] {
     return this.cart.items;
   }
+
+  cartTotal(): string {
+    let results = 0;
+
+    this.cart.items.forEach((item: CartItem) => {
+      results = results += item.product.price * item.quantity;
+    });
+
+    return results.toFixed(2);
+  }
 }

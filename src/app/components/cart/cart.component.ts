@@ -19,30 +19,15 @@ export class CartComponent {
 
   ngOnInit() {
     this.cart.items = this.cartService.getCartItems();
-    this.total = this.setCartTotal(this.cart.items);
+    this.total = this.cartService.cartTotal();
   }
 
-  ngOnChanges() {
-    console.log('test..');
+  setCartTotal(): void {
+    this.total = this.cartService.cartTotal();
   }
 
-  setCartTotal(items: CartItem[]): string {
-    let results = 0;
-
-    items.forEach((item: CartItem) => {
-      results = results += item.product.price * item.quantity;
-    });
-
-    return results.toFixed(2);
-  }
-
-  increaseQuantity(event: MouseEvent, item: CartItem): void {
-    const quantity = (event?.target as HTMLInputElement).getAttribute(
-      'ng-reflect-model'
-    );
-    console.log({
-      quantity,
-      item,
-    });
+  addToCart(item: CartItem): void {
+    this.cartService.addToCart(item);
+    this.total = this.cartService.cartTotal();
   }
 }
