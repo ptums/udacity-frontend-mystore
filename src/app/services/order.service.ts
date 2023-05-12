@@ -7,9 +7,7 @@ import { Order } from '../types/order.interface';
 export class OrderService {
   customerOrder: Order = {
     fullName: '',
-    address: '',
-    email: '',
-    creditCard: '',
+    orderTotal: '',
   };
 
   constructor() {}

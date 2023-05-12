@@ -9,8 +9,6 @@ This repository contains the code for the Udacity Frontend Nanodegree project "M
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 

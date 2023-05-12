@@ -46,7 +46,7 @@
         required
         [(ngModel)]="fullName"
         name="fullName"
-        minlength="3"
+        minlength="5"
         placeholder="Enter full name"
       />
       <input
@@ -76,13 +76,14 @@
         required
         [(ngModel)]="creditCard"
         name="creditCard"
-        minlength="3"
+        minlength="16"
         pattern="[0-9]{16}"
-        placeholder="Enter credit card number"
+        placeholder="Enter credit card number (minimum of 16 numbers only)"
       />
       <button
         type="submit"
-        class="text-white rounded bg-green-500 hover:bg-green-400 h-12 w-48"
+        class="text-white rounded bg-green-500 enabled:hover:bg-green-400 h-12 w-48 disabled:opacity-75"
+        [disabled]="!form.form.valid"
       >
         Checkout
       </button>

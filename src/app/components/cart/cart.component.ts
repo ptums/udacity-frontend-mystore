@@ -16,9 +16,9 @@ export class CartComponent {
   };
   total: string;
   fullName: string;
-  email: string;
-  address: string;
   creditCard: string;
+  address: string;
+  email: string;
 
   constructor(
     private cartService: CartService,
@@ -27,9 +27,9 @@ export class CartComponent {
   ) {
     this.total = '0';
     this.fullName = '';
-    this.email = '';
-    this.address = '';
     this.creditCard = '';
+    this.address = '';
+    this.email = '';
   }
 
   ngOnInit() {
@@ -48,15 +48,11 @@ export class CartComponent {
 
   onSubmit(): void {
     const fullName = this.fullName;
-    const email = this.email;
-    const address = this.address;
-    const creditCard = this.creditCard;
+    const orderTotal = this.total;
 
     this.customerOrder.setCustomerOrder({
       fullName,
-      email,
-      address,
-      creditCard,
+      orderTotal,
     });
     this.router.navigate(['/confirmation']);
   }
