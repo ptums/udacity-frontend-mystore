@@ -9,6 +9,7 @@ This repository contains the code for the Udacity Frontend Nanodegree project "M
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Usage](#usage)
+  - [Starting the Application](#starting-the-application)
 
 ## Features
 
@@ -33,3 +34,15 @@ To get a local copy of the project up and running, follow the steps below.
    ```bash
    git clone https://github.com/ptums/udacity-frontend-mystore.git
    ```
+
+## Usage
+
+### Starting the Application
+
+To start the application, run the following command:
+
+```
+npm start
+```
+
+The application will be available at http://localhost:4200.
