@@ -12,11 +12,16 @@ export class CartService {
   constructor() {}
 
   addToCart(item: CartItem): void {
-    if (this.itemIsInCart(item.product.id)) {
+    if (item.quantity === 0) {
+      console.log('remove hit');
       this.removeFromCart(item);
-      this.cart.items.push(item);
     } else {
-      this.cart.items.push(item);
+      if (this.itemIsInCart(item.product.id)) {
+        this.removeFromCart(item);
+        this.cart.items.push(item);
+      } else {
+        this.cart.items.push(item);
+      }
     }
   }
 
@@ -35,6 +40,7 @@ export class CartService {
     const itemList = this.cart.items.filter(
       (i) => i.product.id !== item.product.id
     );
+
     this.cart.items = itemList;
   }
 

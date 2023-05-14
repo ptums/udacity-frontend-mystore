@@ -37,6 +37,15 @@ export class CartComponent {
     this.total = this.cartService.cartTotal();
   }
 
+  quantityChange(item: CartItem) {
+    this.cartService.addToCart(item);
+
+    if (item.quantity === 0) {
+      alert(`${item.product.name} has been removed from your cart!`);
+      this.cart.items = this.cartService.getCartItems();
+    }
+  }
+
   setCartTotal(): void {
     this.total = this.cartService.cartTotal();
   }
