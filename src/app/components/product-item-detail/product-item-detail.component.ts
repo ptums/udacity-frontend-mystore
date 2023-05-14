@@ -11,6 +11,7 @@ import { CartItem } from 'src/app/types/cart.interface';
 })
 export class ProductItemDetailComponent {
   item: CartItem;
+  isInCart: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,9 +28,28 @@ export class ProductItemDetailComponent {
       },
       quantity: 1,
     };
+
+    this.isInCart = false;
   }
 
   ngOnInit(): void {
+    this.getItemDetails();
+  }
+
+  addToCart(): void {
+    alert(`${this.item.product.name} has been added to your cart!`);
+    this.cartService.addToCart(this.item);
+    this.isInCart = true;
+  }
+
+  removeFromCard(): void {
+    alert(`${this.item.product.name} has been removed your cart!`);
+    this.cartService.removeFromCart(this.item);
+    this.getItemDetails();
+    this.isInCart = false;
+  }
+
+  getItemDetails() {
     this.route.params.subscribe((params: Params) => {
       const productId = parseInt(params['id']);
 
@@ -39,11 +59,6 @@ export class ProductItemDetailComponent {
         this.setProductById(productId);
       }
     });
-  }
-
-  addToCart(): void {
-    alert(`${this.item.product.name} has been added to your cart!`);
-    this.cartService.addToCart(this.item);
   }
 
   setProductById(productId: number): void {
