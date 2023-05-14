@@ -13,8 +13,8 @@ export class CartService {
 
   addToCart(item: CartItem): void {
     if (item.quantity === 0) {
-      console.log('remove hit');
       this.removeFromCart(item);
+      this.cartTotal();
     } else {
       if (this.itemIsInCart(item.product.id)) {
         this.removeFromCart(item);

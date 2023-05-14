@@ -43,6 +43,7 @@ export class CartComponent {
     if (item.quantity === 0) {
       alert(`${item.product.name} has been removed from your cart!`);
       this.cart.items = this.cartService.getCartItems();
+      this.total = this.cartService.cartTotal();
     }
   }
 
